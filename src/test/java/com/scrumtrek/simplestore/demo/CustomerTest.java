@@ -8,11 +8,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeTrue;
+import static org.mockito.Mockito.mock;
 
 public class CustomerTest {
     @Test
-    public void shouldBeEmptyNameWhenCreate()
-    {
+    public void shouldHaveNameWhenCreate() {
         //region Given
         String customerName = "stub";
         Customer sut = new Customer(customerName);
@@ -27,15 +28,21 @@ public class CustomerTest {
     }
 
     @Test
-    public void shouldContainMovieWhenAdd()
-    {
+    public void shouldContainMovieWhenAddRental() {
         String movieName = "stub";
-        Movie movie = new Movie(movieName, PriceCodes.NewRelease);
+        Movie movie = new Movie(movieName, PriceCodes.Regular);
+        assumeTrue(movieName == movie.getTitle());
         Rental rental = new Rental(movie, 0);
         Customer sut = new Customer("");
 
         sut.addRental(rental);
 
         assertTrue(sut.Statement().contains(movieName));
+    }
+
+    @Test
+    public void shouldHaveCorrectAmountWhenAddRegularRental()
+    {
+        //mock();
     }
 }
