@@ -31,7 +31,7 @@ public class CustomerTest {
     public void shouldContainMovieWhenAddRental() {
         String movieName = "stub";
         Movie movie = new Movie(movieName, PriceCodes.Regular);
-        assumeTrue(movieName == movie.getTitle());
+        assumeTrue(movieName.equals(movie.getTitle()));
         Rental rental = new Rental(movie, 0);
         Customer sut = new Customer("");
 
